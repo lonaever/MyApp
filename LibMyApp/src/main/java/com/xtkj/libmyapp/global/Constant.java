@@ -12,6 +12,6 @@ public class Constant {
 
     public static final String SET_AUTO_UPDATE="set_autoupdate_enable";
     public static final String SET_AUTO_LOGIN="set_account_autologin";
-    public static final String SET_PWD_REMEMBER="set_account_remember";
+    public static final String SET_PWD_REMEMBER="set_pwd_remember";
     public static final String SET_HTML_FONTSIZE="set_contentsize";
 }
