@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LibMyApp</string>
+    <string name="download_progress">正在下载:%1$d%%</string>
+    <string name="download_success">下载完成，点击安装</string>
+    <string name="download_fail">下载失败</string>
+    <string name="action_save">保存</string>
+    <string name="action_finish">完成</string>
+    <string name="action_submit">提交</string>
+    <string name="action_add">新增</string>
+</resources>

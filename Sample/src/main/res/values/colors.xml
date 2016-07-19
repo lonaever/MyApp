@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f66b5</color>
+    <color name="colorPrimaryDark">#30579f</color>
+    <color name="colorAccent">#F94961</color>
+    <color name="colorWindowBg">#f9f9f9</color>
+
+    <!-- 蓝色风格的Material head -->
+    <integer-array name="materialColors">
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccent</item>
+    </integer-array>
+</resources>

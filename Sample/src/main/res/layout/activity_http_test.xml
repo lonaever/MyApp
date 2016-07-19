@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.xtkj.testnewsframe.page.http.HttpTestActivity">
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        fancy:fb_fontIconResource="&#xf0ab;"
+        fancy:fb_fontIconSize="20sp"
+        fancy:fb_defaultColor="#F94961"
+        fancy:fb_focusColor="#FA6A83"
+        fancy:fb_radius="4dp"
+        fancy:fb_text="新闻列表(ZrcListView实现)"
+        fancy:fb_textColor="@color/white"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="4dp"
+        fancy:fb_fontIconResource="&#xf04b;"
+        fancy:fb_fontIconSize="20sp"
+        fancy:fb_defaultColor="#F94961"
+        fancy:fb_focusColor="#FA6A83"
+        fancy:fb_radius="4dp"
+        fancy:fb_text="下载文件(至App扩展存储)"
+        fancy:fb_textColor="@color/white"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_download_sd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="4dp"
+        fancy:fb_fontIconResource="&#xf04b;"
+        fancy:fb_fontIconSize="20sp"
+        fancy:fb_defaultColor="#F94961"
+        fancy:fb_focusColor="#FA6A83"
+        fancy:fb_radius="4dp"
+        fancy:fb_text="下载文件(至SD存储,先申请权限)"
+        fancy:fb_textColor="@color/white"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_people"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="4dp"
+        fancy:fb_fontIconResource="&#xf0ab;"
+        fancy:fb_fontIconSize="20sp"
+        fancy:fb_defaultColor="#F94961"
+        fancy:fb_focusColor="#FA6A83"
+        fancy:fb_radius="4dp"
+        fancy:fb_text="人物列表(UPTR实现)"
+        fancy:fb_textColor="@color/white"/>
+</LinearLayout>
