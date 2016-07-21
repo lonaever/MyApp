@@ -51,16 +51,16 @@ public abstract class BaseWebActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         //args
         if (getIntent().hasExtra("webTitle")) {
-            webTitle=getIntent().getStringExtra("webTitle");
+            webTitle = getIntent().getStringExtra("webTitle");
         }
         if (getIntent().hasExtra("webUrl")) {
-            webUrl=getIntent().getStringExtra("webUrl");
+            webUrl = getIntent().getStringExtra("webUrl");
         }
         if (getIntent().hasExtra("webContent")) {
-            webContent=getIntent().getStringExtra("webContent");
+            webContent = getIntent().getStringExtra("webContent");
         }
         if (getIntent().hasExtra("webContentObj")) {
-            webContentObj= (WebContent) getIntent().getSerializableExtra("webContentObj");
+            webContentObj = (WebContent) getIntent().getSerializableExtra("webContentObj");
         }
     }
 
@@ -69,7 +69,7 @@ public abstract class BaseWebActivity extends BaseActivity {
     }
 
     public WebViewClient genWebViewClient() {
-        return new WebViewClient(){
+        return new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -79,7 +79,7 @@ public abstract class BaseWebActivity extends BaseActivity {
     }
 
     public void setWebView() {
-        WebSettings ws=webview.getSettings();
+        WebSettings ws = webview.getSettings();
         //set webview
         ws.setUseWideViewPort(true);//自动调整页面适配屏幕
         ws.setLoadWithOverviewMode(true);
@@ -102,12 +102,13 @@ public abstract class BaseWebActivity extends BaseActivity {
             webview.loadUrl(webUrl);
         }
         if (!StringUtils.isEmpty(webContent)) {
-            webview.loadData(webContent,"text/html","UTF-8");
+            webview.loadData(webContent, "text/html", "UTF-8");
         }
-        if (webContentObj!=null) {
-            webview.loadDataWithBaseURL("file:///android_asset/", webContentObj.genHtml(this), "text/html", "UTF-8", "");
+        if (webContentObj != null) {
+            if (webContentObj.genHtml(this)!=null) {
+                webview.loadDataWithBaseURL("file:///android_asset/", webContentObj.genHtml(this), "text/html", "UTF-8", "");
+            }
         }
     }
-
 
 }
