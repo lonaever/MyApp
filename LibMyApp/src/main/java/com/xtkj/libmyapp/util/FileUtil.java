@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.provider.ContactsContract;
+import android.support.v4.content.ContextCompat;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -55,13 +56,13 @@ public class FileUtil {
     public static void init(Context context) {
         appContext = context;
         String packageName = context.getPackageName();
-        LogUtils.d("packname="+packageName);
+        LogUtils.d("packname=" + packageName);
         String n[] = packageName.split("\\.");
-        LogUtils.d("n length="+n.length);
+        LogUtils.d("n length=" + n.length);
         if (n.length > 0) {
             rootFolder = n[n.length - 1];
         }
-        LogUtils.i("rootfolder="+rootFolder);
+        LogUtils.i("rootfolder=" + rootFolder);
     }
 
     //--私有存储目录,肯定是可用的,但是不宜放太多东西--
@@ -120,39 +121,54 @@ public class FileUtil {
     //--sd卡自定义存储路径,sd必须存在,android6.0以上需要有权限--
 
     public static String getExtRootPath() {
-        if (rootPath==null) {
-            rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + rootFolder;
-            makeDirs(rootPath);
+        if (ContextCompat.checkSelfPermission(appContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (rootPath == null) {
+                rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + rootFolder;
+                makeDirs(rootPath);
+            }
         }
         return rootPath;
     }
 
     public static String getExtFilePath() {
-        if (filesPath==null) {
-            filesPath = getExtRootPath() + "/" + FILES_FOLDER;
-            makeDirs(filesPath);
+        if (filesPath == null) {
+            if (getExtRootPath() != null) {
+                filesPath = rootPath + "/" + FILES_FOLDER;
+                makeDirs(filesPath);
+            }
         }
         return filesPath;
     }
 
     public static String getExtCachePath() {
-        if (cachePath==null) {
-            cachePath = getExtRootPath() + "/" + CACHE_FOLDER;
-            makeDirs(cachePath);
+        if (cachePath == null) {
+            if (getExtRootPath() != null) {
+                cachePath = rootPath + "/" + CACHE_FOLDER;
+                makeDirs(cachePath);
+            }
         }
         return cachePath;
     }
 
     public static String getExtRootPathFile(String filename) {
-        return getExtRootPath() + "/" + filename;
+        if (getExtRootPath()!=null) {
+            return rootPath + "/" + filename;
+        }
+        return null;
     }
 
     public static String getExtFilePathFile(String filename) {
-        return getExtFilePath() + "/" + filename;
+        if (getExtFilePath()!=null) {
+            return filesPath + "/" + filename;
+        }
+        return null;
     }
 
     public static String getExtCachePathFile(String filename) {
-        return getExtCachePath() + "/" + filename;
+        if (getExtCachePath()!=null) {
+            return cachePath + "/" + filename;
+        }
+        return null;
     }
 
     //--缓存方法--
@@ -160,11 +176,16 @@ public class FileUtil {
     /**
      * 应用缓存大小
      * 包含三个部分:沙盒+appext+ext中的cache部分
+     *
      * @return M
      */
     public static String appCacheSize() {
-        long size=pathSize(getAppCachePath())+pathSize(getAppExtCachePath()+pathSize(getExtCachePath()));
-        return String.format("%.2fM",(float)(size/1024.0/1024.0));
+        long size = pathSize(getAppCachePath());
+        if (isAppExtOk()) {
+            size += pathSize(getAppExtCachePath());
+            size += pathSize(getExtCachePath());
+        }
+        return String.format("%.2fM", (float) (size / 1024.0 / 1024.0));
     }
 
     /**
@@ -181,6 +202,7 @@ public class FileUtil {
 
     /**
      * 创建目录
+     *
      * @param path
      */
     public static void makeDirs(String path) {
@@ -196,7 +218,7 @@ public class FileUtil {
      * @return
      */
     public static String genRandomPicName(String prefix) {
-        String datestr= DateUtils.format(new Date(),"yyyyMMddHHmmss");
+        String datestr = DateUtils.format(new Date(), "yyyyMMddHHmmss");
         int randomNum = (int) (Math.random() * 10000);
         String fourRandom = randomNum + "";
         int randLength = fourRandom.length();
@@ -204,7 +226,7 @@ public class FileUtil {
             for (int i = 1; i <= 4 - randLength; i++)
                 fourRandom = fourRandom + "0";
         }
-        return prefix+datestr+fourRandom+".jpg";
+        return prefix + datestr + fourRandom + ".jpg";
     }
 
     /**
@@ -260,10 +282,13 @@ public class FileUtil {
      * @return byte
      */
     public static long pathSize(String filepath) {
-        if (filepath==null) {
+        if (filepath == null) {
             return 0;
         }
         File folder = new File(filepath);
+        if (!folder.exists()) {
+            return 0;
+        }
         File[] listFiles = folder.listFiles();
         long size = 0;
         for (int i = 0; i < listFiles.length; i++) {
@@ -466,10 +491,10 @@ public class FileUtil {
      */
     public static boolean deleteFile(String filepath) {
         try {
-            if (filepath==null) {
+            if (filepath == null) {
                 return false;
             }
-            File file=new File(filepath);
+            File file = new File(filepath);
             if (file.exists()) {
                 if (file.isDirectory()) {
                     File[] files = file.listFiles();
