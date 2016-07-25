@@ -4,23 +4,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.xtkj.libmyapp.activity.BaseActivity;
@@ -102,7 +96,7 @@ public abstract class MyLoadingActivity extends BaseActivity {
             ImageView iv_adv = new ImageView(this);
             iv_adv.setTag(Integer.valueOf(index));
             String path = picpaths.get(index);
-            Bitmap bm_adv = AbImageUtil.getScaleByOneSideBitmap(new File(path), getViewWidth(), 0);
+            Bitmap bm_adv = AbImageUtil.getScaleByOneSideBitmap(new File(path), getScreenWidth(), 0);
             if (bm_adv != null) {
                 iv_adv.setImageBitmap(bm_adv);
             }

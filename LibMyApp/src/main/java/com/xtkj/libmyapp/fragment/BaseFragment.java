@@ -35,18 +35,16 @@ public abstract class BaseFragment extends Fragment {
         return (int) (dip * dm.density);
     }
 
-    public int getViewHeight() {
-        Rect frame = new Rect();
-        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int height = frame.height();
-        return height;
+    public int getScreenHeight() {
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.heightPixels;
     }
 
-    public int getViewWidth() {
-        Rect frame = new Rect();
-        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int width = frame.width();
-        return width;
+    public int getScreenWidth() {
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
     }
 
     public void showSuccTip(String tip) {

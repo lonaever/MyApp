@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import com.github.johnpersano.supertoasts.SuperActivityToast;
 import com.github.johnpersano.supertoasts.SuperToast;
@@ -68,18 +69,16 @@ public class BaseActivity extends AppCompatActivity {
         return (int) (dip * dm.density);
     }
 
-    public int getViewHeight() {
-        Rect frame = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int height = frame.height();
-        return height;
+    public int getScreenHeight() {
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.heightPixels;
     }
 
-    public int getViewWidth() {
-        Rect frame = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int width = frame.width();
-        return width;
+    public int getScreenWidth() {
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
     }
 
     public void showSuccTip(String tip) {
