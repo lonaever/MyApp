@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.squareup.phrase.Phrase;
 import com.xtkj.libmyapp.global.Constant;
 import com.xtkj.libmyapp.util.FileUtil;
 
@@ -27,6 +26,6 @@ public class SimpleHtmlContent implements WebContent, Serializable {
         String html = FileUtil.readAssetsByName(context, "simplecontent.html", "UTF-8");
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String fontSize = sp.getString(Constant.SET_HTML_FONTSIZE, "3");
-        return Phrase.from(html).put("fontSize", fontSize).put("content", content).toString();
+        return html.replace("{fontSize}",fontSize).replace("{content}",content);
     }
 }
