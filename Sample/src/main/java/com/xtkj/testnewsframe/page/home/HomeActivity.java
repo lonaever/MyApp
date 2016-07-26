@@ -120,7 +120,7 @@ public class HomeActivity extends LActivity {
      */
     private void checkAutoUpdate() {
         if (vc.checkAutoUpdate()) {
-            /*翔天服务
+            //翔天服务
             if (vc.isXtkjUpdateAvailable()) {
                 vc.requestXtkjVersion(vc.new XtkjVersionCallback() {
                     @Override
@@ -135,7 +135,8 @@ public class HomeActivity extends LActivity {
                         }
                     }
                 });
-            }*/
+            }
+            /*
             if (vc.isFirUpdateAvailable()) {
                 vc.requestFirVersion(vc.new FirVersionCallback() {
                     @Override
@@ -153,6 +154,7 @@ public class HomeActivity extends LActivity {
                     }
                 });
             }
+            */
         }
     }
 
