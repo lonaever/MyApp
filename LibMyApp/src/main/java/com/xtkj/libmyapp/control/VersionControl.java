@@ -44,12 +44,12 @@ public class VersionControl {
     public VersionControl(Context context) {
         appContext = context;
         //翔天的配置参数
-        updateUrl_xtkj=ServerConfig.getValue("updateUrl_xtkj");
-        appId_xtkj=ServerConfig.getValue("appId_xtkj");
+        updateUrl_xtkj = ServerConfig.getValue("updateUrl_xtkj");
+        appId_xtkj = ServerConfig.getValue("appId_xtkj");
 
         //Fir的配置参数
         appId_fir = ServerConfig.getValue("appId_fir");
-        appToken_fir=ServerConfig.getValue("appToken_fir");
+        appToken_fir = ServerConfig.getValue("appToken_fir");
 
         String appPackage = context.getPackageName();
         //读取自己
@@ -101,10 +101,11 @@ public class VersionControl {
 
     /**
      * 判断翔天的升级版本服务是否配置好了
+     *
      * @return
      */
     public boolean isXtkjUpdateAvailable() {
-        if (!StringUtils.isEmpty(updateUrl_xtkj)&&!StringUtils.isEmpty(appId_xtkj)) {
+        if (!StringUtils.isEmpty(updateUrl_xtkj) && !StringUtils.isEmpty(appId_xtkj)) {
             return true;
         }
         return false;
@@ -112,10 +113,11 @@ public class VersionControl {
 
     /**
      * 判断Fir的服务是否配置好了
+     *
      * @return
      */
     public boolean isFirUpdateAvailable() {
-        if (!StringUtils.isEmpty(appId_fir)&&!StringUtils.isEmpty(appToken_fir)) {
+        if (!StringUtils.isEmpty(appId_fir) && !StringUtils.isEmpty(appToken_fir)) {
             return true;
         }
         return false;
@@ -128,7 +130,8 @@ public class VersionControl {
 
         @Override
         public Object parseNetworkResponse(Response response, int id) throws Exception {
-            JSONArray array = JSON.parseArray(response.body().string());
+            String r = response.body().string();
+            JSONArray array = JSON.parseArray(r);
             if (array.size() > 0) {
                 JSONObject json = array.getJSONObject(0);
                 versionCode = json.getIntValue("VERSION_CODE");
@@ -136,7 +139,7 @@ public class VersionControl {
                 updateInfo = json.getString("UPDATE_DESCRIPTION");
                 apkUrl = json.getString("FILE_PATH");
                 must = json.getIntValue("MUST");
-                LogUtils.d("xtkj server versioncode="+versionCode+",versionname="+versionName);
+                LogUtils.d("xtkj server versioncode=" + versionCode + ",versionname=" + versionName);
             }
             return null;
         }
@@ -146,7 +149,7 @@ public class VersionControl {
     public void requestXtkjVersion(XtkjVersionCallback callback) {
         JSONObject jp = new JSONObject();
         jp.put("UniquelyIdentifies", appId_xtkj);
-        OkHttpUtils.get().url(updateUrl_xtkj).addParams("Type", "json").addParams("Parameters", jp.toString()).build().execute(callback);
+        OkHttpUtils.post().url(updateUrl_xtkj).addParams("Type", "json").addParams("Parameters", jp.toString()).build().execute(callback);
     }
 
     /**
@@ -156,12 +159,12 @@ public class VersionControl {
 
         @Override
         public Object parseNetworkResponse(Response response, int id) throws Exception {
-            JSONObject json=JSON.parseObject(response.body().string());
-            versionName=json.getString("versionShort");
-            versionCode=json.getIntValue("build");
-            updateInfo=json.getString("changelog");
-            apkUrl=json.getString("direct_install_url");
-            LogUtils.d("fir server versioncode="+versionCode+",versionname="+versionName);
+            JSONObject json = JSON.parseObject(response.body().string());
+            versionName = json.getString("versionShort");
+            versionCode = json.getIntValue("build");
+            updateInfo = json.getString("changelog");
+            apkUrl = json.getString("direct_install_url");
+            LogUtils.d("fir server versioncode=" + versionCode + ",versionname=" + versionName);
             return null;
         }
 
