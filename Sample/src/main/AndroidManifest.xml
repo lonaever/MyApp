@@ -33,10 +33,11 @@
 
         <service android:name=".UpdateService" />
 
+        <activity android:name=".page.set.SetActivity"/>
         <activity android:name=".page.http.HttpTestActivity" />
         <activity android:name=".page.http.ZrcRefreshNewsActivity" />
         <activity android:name=".page.DetailWebActivity" />
-        <activity android:name=".page.http.UPTRRefreshPeopleActivity"></activity>
+        <activity android:name=".page.http.UPTRRefreshPeopleActivity"/>
     </application>
 
 </manifest>
