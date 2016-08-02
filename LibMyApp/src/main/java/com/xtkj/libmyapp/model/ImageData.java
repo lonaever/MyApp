@@ -2,6 +2,7 @@ package com.xtkj.libmyapp.model;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.widget.ImageView;
 
@@ -19,67 +20,53 @@ import java.io.Serializable;
  * Created by lonaever on 14-7-23.
  * 使用说明：
  * 用于调用系统相册或者拍照之后的处理，可以在显示的同时生成出需要大小的压缩图片。
- *
+ * <p>
  * 配合pickImageUtil使用。
  * 1.调用open，不执行剪裁。获取到的原图uri，可以选择生成压缩图，或者不生成压缩图。
  */
 public class ImageData implements Serializable {
 
-    public final static int ImageDataScaleTypeCenterCrop = 0;
-    public final static int ImageDataScaleTypeCenterInside = 1;
+    public enum ScaleType {
+        SCALE_TYPE_FIT_CENTER,
+        SCALE_TYPE_CENTER_CROP
+    }
 
     public String imgId;
     public String imgUrl;
-    public String imgRelativeUrl;
-    public transient Uri imgUri;
     public String fileOrgPath;//原图路径
     public String fileCompressPath;//压缩后的路径
 
     //压缩图信息
     public int cwidth;
     public int cheight;
-    public int scaleType;
+    public ScaleType scaleType;
 
     public ImageData() {
 
     }
 
-    /**
-     * 通过原图的Uri来构造
-     *
-     * @param uri
-     * @param width     用来决定是否生成压缩的图片
-     * @param height
-     * @param scaleType 图片缩小时候用的方式，是centerCrop还是centerInSide
-     */
-    public ImageData(Uri uri, int width, int height, int scaleType) {
-        imgUri = uri;
+    public ImageData(String filePath) {
+        this.fileOrgPath = filePath;
+    }
+
+    public ImageData(String filePath, int width, int height, ScaleType scaleType) {
+        this.fileOrgPath = filePath;
         this.cwidth = width;
         this.cheight = height;
         this.scaleType = scaleType;
     }
 
-    /**
-     * 通过网络url来构造
-     *
-     * @param url
-     */
-    public ImageData(String url) {
-        imgUrl = url;
-    }
-
-    /**
-     * 通过文件路径来构造
-     *
-     * @param path
-     */
-    public ImageData(String path, int width, int height, int scaleType) {
-        fileOrgPath = path;
+    public ImageData(String filePath, int width, int height) {
+        this.fileOrgPath = filePath;
         this.cwidth = width;
         this.cheight = height;
-        this.scaleType = scaleType;
+        this.scaleType = ScaleType.SCALE_TYPE_FIT_CENTER;
     }
 
+    public ImageData(String imgId, String imgUrl) {
+        this.imgId = imgId;
+        this.imgUrl = imgUrl;
+    }
 
     /**
      * 在显示图片的同时，判断是否需要同时生成压缩的图片
@@ -95,41 +82,21 @@ public class ImageData implements Serializable {
             Glide.with(context).load(new File(fileCompressPath)).centerCrop().crossFade().into(imageView);
         } else if (imgUrl != null) {
             Glide.with(context).load(Uri.parse(imgUrl)).centerCrop().crossFade().into(imageView);
-        } else if (imgUri != null) {
-            fileOrgPath = UriUtil.getPath(context, imgUri);
-            if (cwidth > 0 && cheight > 0) {
-                BitmapTypeRequest<Uri> request = Glide.with(context).load(imgUri).asBitmap();
-                SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>(cwidth, cheight) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        imageView.setImageBitmap(resource);
-                        fileCompressPath=FileUtil.getAppExtCachePathFile(FileUtil.genRandomPicName("compress"));
-                        FileUtil.writeBitmapToSD(fileCompressPath,resource, Bitmap.CompressFormat.JPEG);
-                    }
-                };
-                if (scaleType == 0) {
-                    request.centerCrop().into(target);
-                } else {
-                    request.fitCenter().into(target);
-                }
-            } else {
-                Glide.with(context).load(imgUri).centerCrop().crossFade().into(imageView);
-            }
-        }else if (fileOrgPath!=null) {
-            File imageFile=new File(fileOrgPath);
+        } else if (fileOrgPath != null) {
+            File imageFile = new File(fileOrgPath);
             if (cwidth > 0 && cheight > 0) {
                 BitmapTypeRequest<File> request = Glide.with(context).load(imageFile).asBitmap();
                 SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>(cwidth, cheight) {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         imageView.setImageBitmap(resource);
-                        fileCompressPath=FileUtil.getAppExtCachePathFile(FileUtil.genRandomPicName("compress"));
-                        FileUtil.writeBitmapToSD(fileCompressPath,resource, Bitmap.CompressFormat.JPEG);
+                        fileCompressPath = FileUtil.getAppExtCachePathFile(FileUtil.genRandomPicName("compress"));
+                        FileUtil.writeBitmapToSD(fileCompressPath, resource, Bitmap.CompressFormat.JPEG);
                     }
                 };
-                if (scaleType == 0) {
+                if (scaleType==ScaleType.SCALE_TYPE_CENTER_CROP) {
                     request.centerCrop().into(target);
-                } else {
+                }else {
                     request.fitCenter().into(target);
                 }
             } else {
@@ -137,7 +104,6 @@ public class ImageData implements Serializable {
             }
         }
     }
-
 
 
 }

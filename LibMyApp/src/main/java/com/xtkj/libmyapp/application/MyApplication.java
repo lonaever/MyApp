@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.xtkj.libmyapp.control.VersionControl;
 import com.xtkj.libmyapp.util.FileUtil;
+import com.xtkj.libmyapp.util.GalleryUtil;
 import com.xtkj.libmyapp.util.MyLog;
 import com.xtkj.libmyapp.util.ServerConfig;
 
@@ -21,6 +22,8 @@ public class MyApplication extends Application {
 		ServerConfig.initServerConfig(getApplicationContext());
 		//初始化文件类
 		FileUtil.init(getApplicationContext());
+		//相册初始化
+        GalleryUtil.init(getApplicationContext());
 		//初始化日志类
 		MyLog.initFileDir(FileUtil.getAppExtFilesPath());
 
