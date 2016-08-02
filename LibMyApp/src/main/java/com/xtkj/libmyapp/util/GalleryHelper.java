@@ -6,16 +6,36 @@ import android.content.DialogInterface;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 
+import com.xtkj.libmyapp.util.glide.GlideImageLoader;
+import com.xtkj.libmyapp.util.glide.GlidePauseOnScrollListener;
+
+import java.io.File;
 import java.util.List;
 
+import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.ThemeConfig;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
 
 /**
  * Created by minyu on 16/7/29.
  */
 public class GalleryHelper implements GalleryFinal.OnHanlderResultCallback {
+
+    public final static int REQUEST_CODE_CAMERA = 1000;
+    public final static int REQUEST_CODE_GALLERY = 1001;
+
+    public static void init(Context context) {
+        //配置imageloader为Glide
+        CoreConfig coreConfig = new CoreConfig.Builder(context, new GlideImageLoader(), ThemeConfig.DARK)
+                .setPauseOnScrollListener(new GlidePauseOnScrollListener(false, true))
+                .setEditPhotoCacheFolder(new File(FileUtil.getAppExtCachePath()))
+                .setTakePhotoFolder(new File(FileUtil.getAppExtFilesPath()))
+                .build();
+
+        GalleryFinal.init(coreConfig);
+    }
 
     public interface OnPickPhotoCallback {
         void onPickSucc(PhotoInfo photoInfo);
@@ -72,7 +92,7 @@ public class GalleryHelper implements GalleryFinal.OnHanlderResultCallback {
             builder.setForceCrop(true);
         }
         FunctionConfig config = builder.build();
-        GalleryFinal.openCamera(GalleryUtil.REQUEST_CODE_CAMERA, config, this);
+        GalleryFinal.openCamera(REQUEST_CODE_CAMERA, config, this);
     }
 
     private void takeGallery() {
@@ -89,15 +109,15 @@ public class GalleryHelper implements GalleryFinal.OnHanlderResultCallback {
             }
             builder.setForceCrop(true);
             FunctionConfig config = builder.build();
-            GalleryFinal.openGallerySingle(GalleryUtil.REQUEST_CODE_GALLERY, config, this);
+            GalleryFinal.openGallerySingle(REQUEST_CODE_GALLERY, config, this);
         } else {
             if (maxCount > 1) {
                 builder.setMutiSelectMaxSize(maxCount);
                 FunctionConfig config = builder.build();
-                GalleryFinal.openGalleryMuti(GalleryUtil.REQUEST_CODE_GALLERY, config, this);
+                GalleryFinal.openGalleryMuti(REQUEST_CODE_GALLERY, config, this);
             } else {
                 FunctionConfig config = builder.build();
-                GalleryFinal.openGallerySingle(GalleryUtil.REQUEST_CODE_GALLERY, config, this);
+                GalleryFinal.openGallerySingle(REQUEST_CODE_GALLERY, config, this);
             }
         }
 

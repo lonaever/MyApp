@@ -4,11 +4,9 @@ import android.app.Application;
 
 import com.xtkj.libmyapp.control.VersionControl;
 import com.xtkj.libmyapp.util.FileUtil;
-import com.xtkj.libmyapp.util.GalleryUtil;
+import com.xtkj.libmyapp.util.GalleryHelper;
 import com.xtkj.libmyapp.util.MyLog;
 import com.xtkj.libmyapp.util.ServerConfig;
-
-import cn.finalteam.toolsfinal.logger.Logger;
 
 
 public class MyApplication extends Application {
@@ -23,7 +21,7 @@ public class MyApplication extends Application {
 		//初始化文件类
 		FileUtil.init(getApplicationContext());
 		//相册初始化
-        GalleryUtil.init(getApplicationContext());
+        GalleryHelper.init(getApplicationContext());
 		//初始化日志类
 		MyLog.initFileDir(FileUtil.getAppExtFilesPath());
 
