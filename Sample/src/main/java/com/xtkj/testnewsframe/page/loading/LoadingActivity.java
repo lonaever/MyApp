@@ -67,4 +67,9 @@ public class LoadingActivity extends MyLoadingActivity {
     public void done() {
         LApplication.app.pdc.loadingFinish();
     }
+
+    @Override
+    public boolean needCheckNetwork() {
+        return false;
+    }
 }

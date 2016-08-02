@@ -14,6 +14,7 @@ import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.testnewsframe.R;
 import com.xtkj.testnewsframe.UpdateService;
 import com.xtkj.testnewsframe.page.base.LActivity;
+import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
 import com.xtkj.testnewsframe.page.http.HttpTestActivity;
 import com.xtkj.testnewsframe.page.loading.LoadingActivity;
 import com.xtkj.testnewsframe.page.set.SetActivity;
@@ -201,6 +202,11 @@ public class HomeActivity extends LActivity {
     @OnClick(R.id.btn_http)
     public void onBtnHttp(View view) {
         openIntent(HttpTestActivity.class, true);
+    }
+
+    @OnClick(R.id.btn_takepic)
+    public void onBtnTakepic(View view) {
+        openIntent(TakePicActivity.class, true);
     }
 
     /**

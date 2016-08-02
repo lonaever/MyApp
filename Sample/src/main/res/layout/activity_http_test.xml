@@ -65,4 +65,5 @@
         fancy:fb_radius="4dp"
         fancy:fb_text="人物列表(UPTR实现)"
         fancy:fb_textColor="@color/white"/>
+
 </LinearLayout>

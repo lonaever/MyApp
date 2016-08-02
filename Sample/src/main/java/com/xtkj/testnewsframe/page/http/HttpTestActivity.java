@@ -14,6 +14,7 @@ import com.xtkj.libmyapp.util.OpenFiles;
 import com.xtkj.libmyapp.util.ToolsUtil;
 import com.xtkj.testnewsframe.R;
 import com.xtkj.testnewsframe.page.base.LActivity;
+import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.m.permission.MPermissions;
 import com.zhy.m.permission.PermissionDenied;
