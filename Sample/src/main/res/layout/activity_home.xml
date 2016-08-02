@@ -39,7 +39,13 @@
                 android:id="@+id/btn_takepic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2、相册测试" />
+                android:text="2、拍照,相册测试" />
+
+            <Button
+                android:id="@+id/btn_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3、viewpager及Eventbus测试" />
         </LinearLayout>
 
 
