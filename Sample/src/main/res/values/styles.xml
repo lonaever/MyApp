@@ -16,6 +16,9 @@
         <item name="vpiCirclePageIndicatorStyle">@style/CustomCirclePageIndicator</item>
         <!-- 设置actionbar上字体的大小-->
         <item name="actionMenuTextAppearance">@style/ActionMenuText</item>
+        <!-- 设置actionbar的样式-->
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+
     </style>
 
     <style name="AppNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -32,10 +35,19 @@
         <item name="android:activityCloseExitAnimation">@anim/push_out_right</item>
     </style>
 
-    <!-- actionbar font-->
+    <!-- actionbar fontstyle-->
     <style name="ActionMenuText" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- actionbar font -->
+    <style name="AppTheme.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TextAppearance</item>
+    </style>
+
+    <style name="AppTheme.ActionBar.TextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="fontPath">MILT_RG.ttf</item>
     </style>
 
     <!--pager tab-->
@@ -54,4 +66,15 @@
         <item name="apTabDrawMode">text</item>
         <item name="apTabTextSelectColor">@color/colorPrimary</item>
     </style>
+
+    <!--textAppearance 小米兰亭-->
+    <style name="TextAppearance.MILT" parent="android:TextAppearance">
+        <item name="fontPath">MILT_RG.ttf</item>
+    </style>
+
+    <!-- textAppearance 华康少女-->
+    <style name="TextAppearance.HKGIRL" parent="android:TextAppearance">
+        <item name="fontPath">HKGIRLW5.TTF</item>
+    </style>
+
 </resources>

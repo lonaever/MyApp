@@ -40,7 +40,8 @@
         <activity android:name=".page.DetailWebActivity" />
         <activity android:name=".page.http.UPTRRefreshPeopleActivity" />
         <activity android:name=".page.gallery.TakePicActivity" />
-        <activity android:name=".page.pager.ViewPagerActivity"></activity>
+        <activity android:name=".page.pager.ViewPagerActivity" />
+        <activity android:name=".page.font.FontDisplayActivity"></activity>
     </application>
 
 </manifest>

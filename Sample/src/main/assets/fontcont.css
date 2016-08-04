@@ -1,0 +1,37 @@
+/*页面背景色*/
+body {
+    background-color: #f6f6f6;
+    /*background:url(shuiyin.jpg);*/
+}
+
+/*正文主容器*/
+.main {
+    width: 100%;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+/*正文段落*/
+.text {
+    text-align: justify;
+    color: #212121;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    word-wrap: break-word;
+    font-family: "HKGIRLW5"
+}
+
+@font-face {
+	font-family: "HKGIRLW5";
+	src: url('file:///android_asset/HKGIRLW5.TTF');
+}
+
+/*正文字体设置*/
+.fontSize1 .text  { font-size:15px; line-height: 23px; }
+
+.fontSize2 .text  { font-size:17px; line-height: 25px; }
+
+.fontSize3 .text  { font-size:19px; line-height: 27px; }
+
+.fontSize4 .text  { font-size:21px; line-height: 29px; }
+

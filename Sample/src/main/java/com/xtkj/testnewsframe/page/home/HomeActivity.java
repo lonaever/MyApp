@@ -14,6 +14,7 @@ import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.testnewsframe.R;
 import com.xtkj.testnewsframe.UpdateService;
 import com.xtkj.testnewsframe.page.base.LActivity;
+import com.xtkj.testnewsframe.page.font.FontDisplayActivity;
 import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
 import com.xtkj.testnewsframe.page.http.HttpTestActivity;
 import com.xtkj.testnewsframe.page.loading.LoadingActivity;
@@ -213,6 +214,11 @@ public class HomeActivity extends LActivity {
     @OnClick(R.id.btn_pager)
     public void onBtnPager(View view) {
         openIntent(ViewPagerActivity.class, true);
+    }
+
+    @OnClick(R.id.btn_font)
+    public void onBtnFont(View view) {
+        openIntent(FontDisplayActivity.class, true);
     }
 
     /**
