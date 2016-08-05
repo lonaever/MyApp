@@ -56,13 +56,10 @@ public class FileUtil {
     public static void init(Context context) {
         appContext = context;
         String packageName = context.getPackageName();
-        LogUtils.d("packname=" + packageName);
         String n[] = packageName.split("\\.");
-        LogUtils.d("n length=" + n.length);
         if (n.length > 0) {
             rootFolder = n[n.length - 1];
         }
-        LogUtils.i("rootfolder=" + rootFolder);
     }
 
     //--私有存储目录,肯定是可用的,但是不宜放太多东西--
