@@ -102,51 +102,6 @@ public class ToolsUtil {
 		context.startActivity(it);
 	}
 
-    /**
-     * 根据给定的毫秒数算得时间的描述.
-     *
-     * @param milliseconds the milliseconds
-     * @return the time description
-     */
-    public static String getTimeDescription(long milliseconds) {
-        long nowtime = new Date().getTime();
-        long det = (nowtime - milliseconds) / 1000;
-        if (det < 60) {
-            return "刚刚";
-        } else if (det < 3600) {
-            return (det / 60) + "分钟";
-        } else if (det < 3600 * 24) {
-            return (det / 3600) + "小时";
-        } else if (det < 3600 * 24 * 7) {
-            return (det / 3600 / 24) + "天";
-        } else {
-            return DateUtils.format(new Date(),"M-d");
-        }
-    }
-
-    /**
-     * 获取时间长度的描述
-     * @param milliseconds
-     * @return
-     */
-    public static String getTimeLongDescription(long milliseconds) {
-        long offset = Math.abs(milliseconds) / 1000;
-        if (offset < 60) {
-            return offset + "秒";
-        } else if (offset < 3600) {
-            return offset / 60 + "分钟";
-        } else if (offset < 3600 * 24) {
-            return (offset / 3600) + "小时";
-        } else if (offset < 3600 * 24 * 30) {
-            return (offset / 3600 / 24) + "天";
-        } else if (offset < 3600 * 24 * 30 * 12) {
-            return (offset / 3600 / 24 / 30) + "个月";
-        } else {
-            return "一年以上";
-        }
-    }
-
-
 	/**
 	 * 描述：手机号格式验证.
 	 *
