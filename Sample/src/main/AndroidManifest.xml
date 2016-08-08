@@ -41,7 +41,8 @@
         <activity android:name=".page.http.UPTRRefreshPeopleActivity" />
         <activity android:name=".page.gallery.TakePicActivity" />
         <activity android:name=".page.pager.ViewPagerActivity" />
-        <activity android:name=".page.font.FontDisplayActivity"></activity>
+        <activity android:name=".page.font.FontDisplayActivity" />
+        <activity android:name=".page.db.DBInsertActivity"></activity>
     </application>
 
 </manifest>

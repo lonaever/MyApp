@@ -28,7 +28,7 @@ public class SetFragment extends PreferenceFragment {
 
 
     //data
-    PublicDataControl pdc = LApplication.app.pdc;
+    PublicDataControl pdc = LApplication.myApp().pdc;
 
     Preference.OnPreferenceClickListener preferenceClickListener = new Preference.OnPreferenceClickListener() {
         @Override
@@ -72,7 +72,7 @@ public class SetFragment extends PreferenceFragment {
 
     private void checkUpdate() {
         final ProgressDialog dlg = ProgressDialog.show(getActivity(), "检查更新", "请稍后...", true);
-        final VersionControl vc = LApplication.app.vc;
+        final VersionControl vc = LApplication.myApp().vc;
         if (vc.isXtkjUpdateAvailable()) {
             vc.requestXtkjVersion(vc.new XtkjVersionCallback() {
                 @Override
@@ -93,7 +93,7 @@ public class SetFragment extends PreferenceFragment {
     }
 
     private void installUpdate() {
-        final VersionControl vc = LApplication.app.vc;
+        final VersionControl vc = LApplication.myApp().vc;
         InstallApkUtil i = new InstallApkUtil(getActivity(), getActivity().getPackageName(),
                 "app.apk", vc.apkUrl, vc.must == 1);//
         if (vc.must == 1) {

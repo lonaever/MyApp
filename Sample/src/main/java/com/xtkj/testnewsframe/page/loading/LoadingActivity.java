@@ -65,7 +65,7 @@ public class LoadingActivity extends MyLoadingActivity {
 
     @Override
     public void done() {
-        LApplication.app.pdc.loadingFinish();
+        LApplication.myApp().pdc.loadingFinish();
     }
 
     @Override

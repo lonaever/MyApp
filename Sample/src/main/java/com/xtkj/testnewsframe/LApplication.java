@@ -1,5 +1,7 @@
 package com.xtkj.testnewsframe;
 
+import android.app.Application;
+
 import com.xtkj.libmyapp.application.MyApplication;
 import com.xtkj.testnewsframe.control.PublicDataControl;
 
@@ -9,7 +11,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by minyu on 16/7/7.
  */
 public class LApplication extends MyApplication {
-    public static LApplication app;
     public PublicDataControl pdc;
 
     @Override
@@ -20,8 +21,11 @@ public class LApplication extends MyApplication {
                         .setFontAttrId(R.attr.fontPath)
                         .build());
         //init
-        app = this;
         pdc = new PublicDataControl(getApplicationContext());
 
+    }
+
+    public static LApplication myApp() {
+        return (LApplication) myapp;
     }
 }

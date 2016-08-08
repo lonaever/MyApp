@@ -14,8 +14,8 @@ import com.xtkj.testnewsframe.page.home.HomeActivity;
  * Created by minyu on 16/7/7.
  */
 public class LActivity extends BaseActivity {
-    public PublicDataControl pdc = LApplication.app.pdc;
-    public VersionControl vc = LApplication.app.vc;
+    public PublicDataControl pdc = LApplication.myApp().pdc;
+    public VersionControl vc = LApplication.myApp().vc;
 
     //--控制重启----------------------------------------------------------------
 

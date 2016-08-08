@@ -9,6 +9,6 @@ import com.xtkj.testnewsframe.control.PublicDataControl;
  * Created by minyu on 16/7/7.
  */
 public class LFragment extends BaseFragment {
-    public PublicDataControl pdc = LApplication.app.pdc;
-    public VersionControl vc = LApplication.app.vc;
+    public PublicDataControl pdc = LApplication.myApp().pdc;
+    public VersionControl vc = LApplication.myApp().vc;
 }

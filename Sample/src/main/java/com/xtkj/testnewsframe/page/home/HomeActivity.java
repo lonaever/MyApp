@@ -14,6 +14,7 @@ import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.testnewsframe.R;
 import com.xtkj.testnewsframe.UpdateService;
 import com.xtkj.testnewsframe.page.base.LActivity;
+import com.xtkj.testnewsframe.page.db.DBInsertActivity;
 import com.xtkj.testnewsframe.page.font.FontDisplayActivity;
 import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
 import com.xtkj.testnewsframe.page.http.HttpTestActivity;
@@ -219,6 +220,11 @@ public class HomeActivity extends LActivity {
     @OnClick(R.id.btn_font)
     public void onBtnFont(View view) {
         openIntent(FontDisplayActivity.class, true);
+    }
+
+    @OnClick(R.id.btn_db)
+    public void onBtnDb(View view) {
+        openIntent(DBInsertActivity.class, true);
     }
 
     /**
