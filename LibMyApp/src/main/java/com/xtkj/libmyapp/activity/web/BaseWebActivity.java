@@ -44,6 +44,7 @@ public abstract class BaseWebActivity extends BaseActivity {
             }
             super.onProgressChanged(view, newProgress);
         }
+
     }
 
     @Override
