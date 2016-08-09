@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.github.johnpersano.supertoasts.SuperActivityToast;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.xtkj.libmyapp.R;
-import com.zhy.http.okhttp.OkHttpUtils;
+import com.xtkj.libmyapp.http.OkHttpUtils;
 
 /**
  * Created by minyu on 15/7/22.

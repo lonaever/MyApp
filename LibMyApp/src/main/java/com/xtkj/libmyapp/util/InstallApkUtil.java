@@ -6,10 +6,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -17,9 +15,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import com.xtkj.libmyapp.R;
-import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.File;
 import java.io.FileOutputStream;

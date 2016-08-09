@@ -7,8 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.xtkj.libmyapp.http.FileCallback;
-import com.zhy.http.okhttp.OkHttpUtils;
+
+import com.xtkj.libmyapp.http.OkHttpUtils;
+import com.xtkj.libmyapp.http.callback.FileCallBack;
 
 import java.io.File;
 
@@ -63,7 +64,7 @@ public class WpsUtil {
         dlg.setProgress(0);
         dlg.show();
 
-        OkHttpUtils.get().url(docUrl).build().execute(new FileCallback(FileUtil.getAppFilesPath(),saveFileName) {
+        OkHttpUtils.get().url(docUrl).build().execute(new FileCallBack(FileUtil.getAppFilesPath(),saveFileName) {
             @Override
             public void onError(Call call, Exception e, int id) {
                 dlg.dismiss();

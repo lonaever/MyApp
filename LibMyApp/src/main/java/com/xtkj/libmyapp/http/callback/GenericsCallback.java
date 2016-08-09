@@ -1,6 +1,4 @@
-package com.xtkj.libmyapp.http;
-
-import com.zhy.http.okhttp.callback.Callback;
+package com.xtkj.libmyapp.http.callback;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -13,7 +11,7 @@ import okhttp3.Response;
  */
 
 public abstract class GenericsCallback<T> extends Callback<T> {
-    public IGenericsSerializator mGenericsSerializator;
+    IGenericsSerializator mGenericsSerializator;
 
     public GenericsCallback(IGenericsSerializator serializator) {
         mGenericsSerializator = serializator;
@@ -21,7 +19,7 @@ public abstract class GenericsCallback<T> extends Callback<T> {
 
     @Override
     public T parseNetworkResponse(Response response, int id) throws IOException {
-        String string = response.body().string();
+        String string = validateData == null ? response.body().string() : validateData;
         Type superclass = getClass().getGenericSuperclass();
         if (superclass instanceof Class) {
             //表示未设置泛型T

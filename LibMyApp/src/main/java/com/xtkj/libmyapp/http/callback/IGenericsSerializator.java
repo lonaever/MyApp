@@ -1,4 +1,4 @@
-package com.xtkj.libmyapp.http;
+package com.xtkj.libmyapp.http.callback;
 
 import java.lang.reflect.Type;
 

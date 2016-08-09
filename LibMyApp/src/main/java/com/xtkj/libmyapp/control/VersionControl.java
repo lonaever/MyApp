@@ -8,16 +8,12 @@ import android.preference.PreferenceManager;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.xtkj.libmyapp.http.GenericsCallback;
-import com.xtkj.libmyapp.http.JSONObjectCallback;
-import com.xtkj.libmyapp.http.JsonGenericsSerializator;
+import com.xtkj.libmyapp.http.OkHttpUtils;
+import com.xtkj.libmyapp.http.callback.Callback;
 import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.libmyapp.util.ServerConfig;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.Callback;
 
 import cn.finalteam.toolsfinal.StringUtils;
-import okhttp3.Call;
 import okhttp3.Response;
 
 public class VersionControl {

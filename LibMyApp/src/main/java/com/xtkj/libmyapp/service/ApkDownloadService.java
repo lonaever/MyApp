@@ -10,10 +10,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 
 import com.xtkj.libmyapp.R;
-import com.xtkj.libmyapp.http.FileCallback;
+import com.xtkj.libmyapp.http.OkHttpUtils;
+import com.xtkj.libmyapp.http.callback.FileCallBack;
 import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.libmyapp.util.OpenFiles;
-import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public abstract class ApkDownloadService extends Service {
 
     private void startDownload() {
         LogUtils.d("startDownload " + apkUrl);
-        OkHttpUtils.get().url(apkUrl).build().execute(new FileCallback(apkDir, apkName) {
+        OkHttpUtils.get().url(apkUrl).build().execute(new FileCallBack(apkDir, apkName) {
             @Override
             public void onError(Call call, Exception e, int id) {
                 updateBuilder.setContentText(getString(R.string.download_fail)).setProgress(0, 0, false);
