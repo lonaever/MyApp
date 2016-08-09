@@ -6,8 +6,8 @@ v2.0.0
 包含的三方库合集：
 
 	//--核心组件--
-    //网络组件
-    compile 'com.zhy:okhttputils:2.6.2'
+    //http
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
     //异步消息框架
     compile 'org.greenrobot:eventbus:3.0.0'
     //图片加载框架
