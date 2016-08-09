@@ -7,15 +7,14 @@ import android.view.View;
 
 import com.github.johnpersano.supertoasts.SuperActivityToast;
 import com.github.johnpersano.supertoasts.SuperToast;
-import com.xtkj.libmyapp.http.FileCallback;
+import com.xtkj.libmyapp.http.OkHttpUtils;
+import com.xtkj.libmyapp.http.callback.FileCallBack;
 import com.xtkj.libmyapp.util.FileUtil;
 import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.libmyapp.util.OpenFiles;
 import com.xtkj.libmyapp.util.ToolsUtil;
 import com.xtkj.testnewsframe.R;
 import com.xtkj.testnewsframe.page.base.LActivity;
-import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
-import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.m.permission.MPermissions;
 import com.zhy.m.permission.PermissionDenied;
 import com.zhy.m.permission.PermissionGrant;
@@ -82,7 +81,7 @@ public class HttpTestActivity extends LActivity {
         superActivityToast.show();
         LogUtils.d("filepath=" + FileUtil.getAppExtFilesPathFile("1.mp3"));
         //开始下载
-        OkHttpUtils.get().url("http://cdn.y.baidu.com/11176a501471bc3596958834550a84db.mp3").build().execute(new FileCallback(FileUtil.getAppExtFilesPath(), "1.mp3") {
+        OkHttpUtils.get().url("http://cdn.y.baidu.com/11176a501471bc3596958834550a84db.mp3").build().execute(new FileCallBack(FileUtil.getAppExtFilesPath(), "1.mp3") {
             @Override
             public void onError(Call call, Exception e, int id) {
                 superActivityToast.dismiss();
@@ -112,7 +111,7 @@ public class HttpTestActivity extends LActivity {
         superActivityToast.show();
         LogUtils.d("filepath=" + FileUtil.getExtFilePathFile("1.mp3"));
         //开始下载
-        OkHttpUtils.get().url("http://cdn.y.baidu.com/11176a501471bc3596958834550a84db.mp3").build().execute(new FileCallback(FileUtil.getExtFilePath(), "1.mp3") {
+        OkHttpUtils.get().url("http://cdn.y.baidu.com/11176a501471bc3596958834550a84db.mp3").build().execute(new FileCallBack(FileUtil.getExtFilePath(), "1.mp3") {
             @Override
             public void onError(Call call, Exception e, int id) {
                 superActivityToast.dismiss();

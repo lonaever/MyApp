@@ -21,8 +21,6 @@ import com.xtkj.testnewsframe.page.http.HttpTestActivity;
 import com.xtkj.testnewsframe.page.loading.LoadingActivity;
 import com.xtkj.testnewsframe.page.pager.ViewPagerActivity;
 import com.xtkj.testnewsframe.page.set.SetActivity;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

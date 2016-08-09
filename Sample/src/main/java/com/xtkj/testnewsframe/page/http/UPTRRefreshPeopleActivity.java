@@ -1,7 +1,6 @@
 package com.xtkj.testnewsframe.page.http;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.xtkj.libmyapp.adapter.BaseAdapterHelper;
-import com.xtkj.libmyapp.http.JsonGenericsSerializator;
-import com.xtkj.libmyapp.http.ext2xtkj.XtGenericsCallback;
+import com.xtkj.libmyapp.http.ext2xtkj.XtkjGenericsCallback;
 import com.xtkj.libmyapp.util.LogUtils;
 import com.xtkj.testnewsframe.R;
-import com.xtkj.testnewsframe.model.NewsInfo;
 import com.xtkj.testnewsframe.model.PeopleInfo;
 import com.xtkj.testnewsframe.page.base.LActivity;
 import com.xtkj.testnewsframe.util.EmptyViewUtils;
@@ -27,7 +24,6 @@ import butterknife.ButterKnife;
 import cn.finalteam.loadingviewfinal.ListViewFinal;
 import cn.finalteam.loadingviewfinal.OnDefaultRefreshListener;
 import cn.finalteam.loadingviewfinal.OnLoadMoreListener;
-import cn.finalteam.loadingviewfinal.PtrClassicFrameLayout;
 import cn.finalteam.loadingviewfinal.PtrFrameLayout;
 import cn.finalteam.loadingviewfinal.header.MaterialHeader;
 import okhttp3.Call;
@@ -121,7 +117,7 @@ public class UPTRRefreshPeopleActivity extends LActivity {
             //第一次的时候显示下就行了
             EmptyViewUtils.showLoading(fl_empty_view);
         }
-        pdc.requestPeopleList(HTTP_TASK_TAG, new XtGenericsCallback<List<PeopleInfo>>() {
+        pdc.requestPeopleList(HTTP_TASK_TAG, new XtkjGenericsCallback<List<PeopleInfo>>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 if (list == null || list.size() == 0) {
@@ -151,7 +147,7 @@ public class UPTRRefreshPeopleActivity extends LActivity {
     }
 
     private void onLoadMore() {
-        pdc.requestPeopleList(HTTP_TASK_TAG, new XtGenericsCallback<List<PeopleInfo>>() {
+        pdc.requestPeopleList(HTTP_TASK_TAG, new XtkjGenericsCallback<List<PeopleInfo>>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 if (list == null || list.size() == 0) {

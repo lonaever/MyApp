@@ -130,7 +130,7 @@ public class ZrcRefreshNewsActivity extends LActivity {
     }
 
     private void onRefresh() {
-        pdc.requestJuheNewsList(HTTP_TASK_TAG, pdc.new JuheNewsCallback() {
+        pdc.requestJuheNewsList(HTTP_TASK_TAG, pdc.new JuheNewsCallback<List<NewsInfo>>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 LogUtils.e("fail",e);
@@ -154,7 +154,7 @@ public class ZrcRefreshNewsActivity extends LActivity {
      * 由于接口没有翻页参数,这里始终都是相同的数据
      */
     private void onLoadMore() {
-        pdc.requestJuheNewsList(this, pdc.new JuheNewsCallback() {
+        pdc.requestJuheNewsList(this, pdc.new JuheNewsCallback<List<NewsInfo>>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 zListView.setRefreshFail("数据获取失败");
