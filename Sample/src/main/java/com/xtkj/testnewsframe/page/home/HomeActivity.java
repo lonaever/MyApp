@@ -19,6 +19,7 @@ import com.xtkj.testnewsframe.page.font.FontDisplayActivity;
 import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
 import com.xtkj.testnewsframe.page.http.HttpTestActivity;
 import com.xtkj.testnewsframe.page.loading.LoadingActivity;
+import com.xtkj.testnewsframe.page.pager.AutoPagerActivity;
 import com.xtkj.testnewsframe.page.pager.ViewPagerActivity;
 import com.xtkj.testnewsframe.page.set.SetActivity;
 
@@ -32,7 +33,7 @@ import okhttp3.Call;
  * 主要包含几个功能:
  * 1、推送功能在这里实现
  * 2、自动检查更新在这里实现
- * <p/>
+ * <p>
  * 我的启动顺序:
  * 无论如何都是先启动这个Acitivy,然后判断如果基础数据没有加载,则调用Loading界面进行加载。此后如果有登录需求也如此操作。
  */
@@ -223,6 +224,11 @@ public class HomeActivity extends LActivity {
     @OnClick(R.id.btn_db)
     public void onBtnDb(View view) {
         openIntent(DBInsertActivity.class, true);
+    }
+
+    @OnClick(R.id.btn_autopager)
+    public void onBtnAutoPager(View view) {
+        openIntent(AutoPagerActivity.class, true);
     }
 
     /**

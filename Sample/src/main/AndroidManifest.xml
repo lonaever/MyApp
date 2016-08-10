@@ -42,7 +42,8 @@
         <activity android:name=".page.gallery.TakePicActivity" />
         <activity android:name=".page.pager.ViewPagerActivity" />
         <activity android:name=".page.font.FontDisplayActivity" />
-        <activity android:name=".page.db.DBInsertActivity"></activity>
+        <activity android:name=".page.db.DBInsertActivity" />
+        <activity android:name=".page.pager.AutoPagerActivity"></activity>
     </application>
 
 </manifest>

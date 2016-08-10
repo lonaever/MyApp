@@ -58,6 +58,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4、数据库测试" />
+
+            <Button
+                android:id="@+id/btn_autopager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4、自动ViewPager" />
         </LinearLayout>
 
 
