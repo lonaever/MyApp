@@ -1,7 +1,11 @@
 package com.xtkj.testnewsframe.page.home;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -229,6 +233,24 @@ public class HomeActivity extends LActivity {
     @OnClick(R.id.btn_autopager)
     public void onBtnAutoPager(View view) {
         openIntent(AutoPagerActivity.class, true);
+    }
+
+    @OnClick(R.id.btn_notify)
+    public void onBtnNotify(View view) {
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setContentTitle("oh,jiba").setContentText("why,what a fuck here! do u know?").setSmallIcon(R.mipmap.ic_test_nofity);
+
+        //set pending
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 100, new Intent(this,AutoPagerActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
+        builder.setContentIntent(pendingIntent);
+
+        //get notfiy
+        Notification notification=builder.build();
+        notification.flags=Notification.FLAG_AUTO_CANCEL;
+
+        manager.notify(1, notification);
+
     }
 
     /**

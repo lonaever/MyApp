@@ -63,7 +63,13 @@
                 android:id="@+id/btn_autopager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4、自动ViewPager" />
+                android:text="5、自动ViewPager" />
+
+            <Button
+                android:id="@+id/btn_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6、通知栏显示" />
         </LinearLayout>
 
 
