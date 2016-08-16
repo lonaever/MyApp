@@ -26,9 +26,11 @@ public class DrawerActivity extends LActivity {
         setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
 
+        toolbar.setTitle("测试抽屉");
+
         setSupportActionBar(toolbar);
 
-        toolbar.setTitle("nimei");
+
 
         //自定义容器的位置
 
