@@ -44,7 +44,7 @@ dependencies {
     compile 'com.github.medyo:fancybuttons:1.8.1'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     //from jitpack
-    compile 'com.github.lonaever:ZrcListView:1.0'
+    compile 'com.github.lonaever:ZrcListView:1.0.1'
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     compile 'com.github.jjobes:SlideDateTimePicker:v1.0.4'
 }
