@@ -2,9 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ln'
+            keyPassword 'javajava'
+            storeFile file('/Users/minyu/Documents/Develop/Android/Key/lonaeverkey')
+            storePassword 'javajava'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.xtkj.testnewsframe"
         minSdkVersion 16
@@ -16,11 +23,29 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "sample_${variant.productFlavors[0].name}_v${defaultConfig.versionName}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
     }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+        }
+    }
+    productFlavors {
+        official {
+
+        }
+        kunming {
+            applicationId 'com.xtkj.testnewframe_kunming'
         }
     }
 }
@@ -37,6 +62,13 @@ dependencies {
     compile 'com.zhy:mpermission-api:1.0.0'
     //字体工具
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-    
+    //抽屉
+    compile('com.mikepenz:materialdrawer:5.4.0@aar') {
+        transitive = true
+        exclude module: 'support-v4'
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-annotations'
+    }
     compile 'com.android.support:support-v4:23.4.0'
 }

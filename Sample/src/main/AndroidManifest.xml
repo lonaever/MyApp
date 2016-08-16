@@ -43,7 +43,9 @@
         <activity android:name=".page.pager.ViewPagerActivity" />
         <activity android:name=".page.font.FontDisplayActivity" />
         <activity android:name=".page.db.DBInsertActivity" />
-        <activity android:name=".page.pager.AutoPagerActivity"></activity>
+        <activity android:name=".page.pager.AutoPagerActivity" />
+        <activity android:name=".page.drawer.DrawerActivity"
+            android:theme="@style/AppDrawer"/>
     </application>
 
 </manifest>

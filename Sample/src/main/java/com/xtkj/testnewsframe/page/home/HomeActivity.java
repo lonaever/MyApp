@@ -10,15 +10,18 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.xtkj.libmyapp.global.Constant;
 import com.xtkj.libmyapp.util.ExitDoubleClick;
 import com.xtkj.libmyapp.util.InstallApkUtil;
 import com.xtkj.libmyapp.util.LogUtils;
+import com.xtkj.testnewsframe.BuildConfig;
 import com.xtkj.testnewsframe.R;
 import com.xtkj.testnewsframe.UpdateService;
 import com.xtkj.testnewsframe.page.base.LActivity;
 import com.xtkj.testnewsframe.page.db.DBInsertActivity;
+import com.xtkj.testnewsframe.page.drawer.DrawerActivity;
 import com.xtkj.testnewsframe.page.font.FontDisplayActivity;
 import com.xtkj.testnewsframe.page.gallery.TakePicActivity;
 import com.xtkj.testnewsframe.page.http.HttpTestActivity;
@@ -27,6 +30,7 @@ import com.xtkj.testnewsframe.page.pager.AutoPagerActivity;
 import com.xtkj.testnewsframe.page.pager.ViewPagerActivity;
 import com.xtkj.testnewsframe.page.set.SetActivity;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.StringUtils;
@@ -37,11 +41,15 @@ import okhttp3.Call;
  * 主要包含几个功能:
  * 1、推送功能在这里实现
  * 2、自动检查更新在这里实现
- * <p>
+ * <p/>
  * 我的启动顺序:
  * 无论如何都是先启动这个Acitivy,然后判断如果基础数据没有加载,则调用Loading界面进行加载。此后如果有登录需求也如此操作。
  */
 public class HomeActivity extends LActivity {
+
+    //ui
+    @BindView(R.id.tv_title)
+    TextView tv_title;
 
     //data
     boolean checkUpdateFlag;//update flag
@@ -60,6 +68,9 @@ public class HomeActivity extends LActivity {
         if (getIntent().hasExtra("notify")) {
             notifyJsonStr = getIntent().getStringExtra("notify");
         }
+
+        //显示当前Flavor的ApplicationId
+        tv_title.setText("测试:"+ BuildConfig.APPLICATION_ID+" "+BuildConfig.VERSION_NAME);
     }
 
     @Override
@@ -242,15 +253,20 @@ public class HomeActivity extends LActivity {
         builder.setContentTitle("oh,jiba").setContentText("why,what a fuck here! do u know?").setSmallIcon(R.mipmap.ic_test_nofity);
 
         //set pending
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 100, new Intent(this,AutoPagerActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 100, new Intent(this, AutoPagerActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(pendingIntent);
 
         //get notfiy
-        Notification notification=builder.build();
-        notification.flags=Notification.FLAG_AUTO_CANCEL;
+        Notification notification = builder.build();
+        notification.flags = Notification.FLAG_AUTO_CANCEL;
 
         manager.notify(1, notification);
 
+    }
+
+    @OnClick(R.id.btn_drawer)
+    public void onBtnDrawer(View view) {
+        openIntent(DrawerActivity.class, true);
     }
 
     /**

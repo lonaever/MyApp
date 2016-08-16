@@ -14,6 +14,7 @@ import com.xtkj.libmyapp.http.callback.GenericsCallback;
 import com.xtkj.libmyapp.http.callback.IGenericsSerializator;
 import com.xtkj.libmyapp.http.callback.JsonGenericsSerializator;
 import com.xtkj.libmyapp.http.ext2xtkj.XtkjGenericsCallback;
+import com.xtkj.testnewsframe.BuildConfig;
 import com.xtkj.testnewsframe.model.NewsInfo;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class PublicDataControl extends DataControl {
     public PublicDataControl(Context context) {
         super(context);
         this.initSet();
+
     }
 
     /**
