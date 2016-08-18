@@ -49,7 +49,7 @@ public class WpsUtil {
             i.installFromUrl("安装阅读插件", "将联机下载安装阅读所需的插件");
             return;
         }
-        File file=new File(FileUtil.getAppFilesPathFile(saveFileName));
+        File file=new File(FileUtil.getAppExtFilesPathFile(saveFileName));
         if (file.exists()) {
             Intent t = getWpsIntent(file);
             context.startActivity(t);
@@ -64,7 +64,7 @@ public class WpsUtil {
         dlg.setProgress(0);
         dlg.show();
 
-        OkHttpUtils.get().url(docUrl).build().execute(new FileCallBack(FileUtil.getAppFilesPath(),saveFileName) {
+        OkHttpUtils.get().url(docUrl).build().execute(new FileCallBack(FileUtil.getAppExtFilesPath(),saveFileName) {
             @Override
             public void onError(Call call, Exception e, int id) {
                 dlg.dismiss();
