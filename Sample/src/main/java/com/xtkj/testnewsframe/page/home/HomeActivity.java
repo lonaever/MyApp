@@ -6,10 +6,12 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.xtkj.libmyapp.global.Constant;
@@ -77,6 +79,24 @@ public class HomeActivity extends LActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_set, menu);
+        final MenuItem item = menu.findItem(R.id.search);
+        SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(item);
+        if (mSearchView==null) {
+            LogUtils.d("oh,fuck");
+        }else {
+            mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
+        }
+
         return true;
     }
 
