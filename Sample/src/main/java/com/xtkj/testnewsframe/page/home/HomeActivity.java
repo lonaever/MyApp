@@ -3,7 +3,10 @@ package com.xtkj.testnewsframe.page.home;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.github.johnpersano.supertoasts.SuperActivityToast;
 import com.xtkj.libmyapp.global.Constant;
 import com.xtkj.libmyapp.util.ExitDoubleClick;
 import com.xtkj.libmyapp.util.InstallApkUtil;
@@ -35,6 +39,7 @@ import com.xtkj.testnewsframe.page.set.SetActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 import okhttp3.Call;
 
@@ -287,6 +292,29 @@ public class HomeActivity extends LActivity {
     @OnClick(R.id.btn_drawer)
     public void onBtnDrawer(View view) {
         openIntent(DrawerActivity.class, true);
+    }
+
+    @OnClick(R.id.btn_ssid)
+    public void onBtnSsid(View view) {
+        LogUtils.d("ssid:"+getSSID(getApplicationContext()));
+        showSuccTip(getSSID(getApplicationContext()));
+    }
+
+    /**
+     *
+     * 获取SSID地址.
+     * @param context
+     * @return
+     */
+    public static String getSSID(Context context) {
+
+        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifi.getConnectionInfo();
+        if (info.getSSID() == null) {
+            return null;
+        } else {
+            return info.getSSID();
+        }
     }
 
     /**
