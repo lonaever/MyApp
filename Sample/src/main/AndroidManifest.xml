@@ -45,8 +45,11 @@
         <activity android:name=".page.font.FontDisplayActivity" />
         <activity android:name=".page.db.DBInsertActivity" />
         <activity android:name=".page.pager.AutoPagerActivity" />
-        <activity android:name=".page.drawer.DrawerActivity"
-            android:theme="@style/AppDrawer"/>
+        <activity
+            android:name=".page.drawer.DrawerActivity"
+            android:theme="@style/AppDrawer" />
+        <activity android:name=".page.http.RecycleViewActivity" />
+        <activity android:name=".page.recycleview.RecycleViewTestActivity"></activity>
     </application>
 
 </manifest>

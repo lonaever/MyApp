@@ -66,4 +66,18 @@
         fancy:fb_text="人物列表(UPTR实现)"
         fancy:fb_textColor="@color/white"/>
 
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="4dp"
+        fancy:fb_fontIconResource="&#xf0ab;"
+        fancy:fb_fontIconSize="20sp"
+        fancy:fb_defaultColor="#F94961"
+        fancy:fb_focusColor="#FA6A83"
+        fancy:fb_radius="4dp"
+        fancy:fb_text="新闻(UPTR+Recycleview实现)"
+        fancy:fb_textColor="@color/white"/>
+
 </LinearLayout>

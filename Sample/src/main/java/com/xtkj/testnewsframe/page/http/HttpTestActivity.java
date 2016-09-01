@@ -66,6 +66,11 @@ public class HttpTestActivity extends LActivity {
         openIntent(UPTRRefreshPeopleActivity.class, true);
     }
 
+    @OnClick(R.id.btn_recycle)
+    public void onBtnRecycle(View view) {
+        openIntent(RecycleViewActivity.class, true);
+    }
+
     private void downloadToAppExt() {
         //生成App扩展存储路径
         if (!FileUtil.isAppExtOk()) {

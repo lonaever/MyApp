@@ -71,4 +71,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
     compile 'com.android.support:support-v4:23.4.0'
+    //recycleview helper
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.4'
+    compile 'com.dinuscxj:recycleritemdecoration:1.0.0'
 }

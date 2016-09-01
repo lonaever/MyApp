@@ -18,6 +18,8 @@
         <item name="actionMenuTextAppearance">@style/ActionMenuText</item>
         <!-- 设置actionbar的样式-->
         <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+        <!-- 设置recycleview分割线-->
+        <item name="android:listDivider">@drawable/custom_divider</item>
 
     </style>
 

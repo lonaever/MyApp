@@ -34,6 +34,7 @@ import com.xtkj.testnewsframe.page.http.HttpTestActivity;
 import com.xtkj.testnewsframe.page.loading.LoadingActivity;
 import com.xtkj.testnewsframe.page.pager.AutoPagerActivity;
 import com.xtkj.testnewsframe.page.pager.ViewPagerActivity;
+import com.xtkj.testnewsframe.page.recycleview.RecycleViewTestActivity;
 import com.xtkj.testnewsframe.page.set.SetActivity;
 
 import butterknife.BindView;
@@ -77,7 +78,7 @@ public class HomeActivity extends LActivity {
         }
 
         //显示当前Flavor的ApplicationId
-        tv_title.setText("测试:"+ BuildConfig.APPLICATION_ID+" "+BuildConfig.VERSION_NAME);
+        tv_title.setText("测试:" + BuildConfig.APPLICATION_ID + " " + BuildConfig.VERSION_NAME);
     }
 
     @Override
@@ -86,9 +87,9 @@ public class HomeActivity extends LActivity {
         getMenuInflater().inflate(R.menu.menu_set, menu);
         final MenuItem item = menu.findItem(R.id.search);
         SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(item);
-        if (mSearchView==null) {
+        if (mSearchView == null) {
             LogUtils.d("oh,fuck");
-        }else {
+        } else {
             mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -296,13 +297,18 @@ public class HomeActivity extends LActivity {
 
     @OnClick(R.id.btn_ssid)
     public void onBtnSsid(View view) {
-        LogUtils.d("ssid:"+getSSID(getApplicationContext()));
+        LogUtils.d("ssid:" + getSSID(getApplicationContext()));
         showSuccTip(getSSID(getApplicationContext()));
     }
 
+    @OnClick(R.id.btn_recycle)
+    public void onBtnRecycle(View view) {
+        openIntent(RecycleViewTestActivity.class, true);
+    }
+
     /**
-     *
      * 获取SSID地址.
+     *
      * @param context
      * @return
      */
