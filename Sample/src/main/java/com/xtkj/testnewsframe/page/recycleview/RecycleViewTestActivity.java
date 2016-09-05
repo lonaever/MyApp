@@ -1,6 +1,7 @@
 package com.xtkj.testnewsframe.page.recycleview;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.dinuscxj.itemdecoration.GridDividerItemDecoration;
 import com.dinuscxj.itemdecoration.LinearDividerItemDecoration;
 import com.xtkj.libmyapp.util.FileUtil;
 import com.xtkj.testnewsframe.R;
@@ -44,7 +46,8 @@ public class RecycleViewTestActivity extends LActivity {
         adapter = new MyAdapter(R.layout.item_str, list);
         adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
         adapter.isFirstOnly(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
@@ -52,7 +55,8 @@ public class RecycleViewTestActivity extends LActivity {
                 showSuccTip("click:"+i);
             }
         });
-        recyclerView.addItemDecoration(new LinearDividerItemDecoration(this,LinearDividerItemDecoration.LINEAR_DIVIDER_VERTICAL));
+        //recyclerView.addItemDecoration(new LinearDividerItemDecoration(this,LinearDividerItemDecoration.LINEAR_DIVIDER_VERTICAL));
+        recyclerView.addItemDecoration(new GridDividerItemDecoration(this,GridDividerItemDecoration.GRID_DIVIDER_VERTICAL));
     }
 
     private class MyAdapter extends BaseQuickAdapter<String> {

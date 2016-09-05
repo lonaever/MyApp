@@ -30,8 +30,6 @@ public class DrawerActivity extends LActivity {
 
         setSupportActionBar(toolbar);
 
-
-
         //自定义容器的位置
 
         new DrawerBuilder(this)

@@ -88,7 +88,6 @@ public class RecycleViewActivity extends LActivity {
                 startActivity(t);
             }
         });
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL_LIST));
     }
 
     private void initUPTR() {
