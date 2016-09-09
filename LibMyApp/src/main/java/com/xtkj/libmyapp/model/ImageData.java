@@ -31,6 +31,10 @@ public class ImageData implements Serializable {
         SCALE_TYPE_CENTER_CROP
     }
 
+    interface CompressCallback {
+        public void onCompressFinish();
+    }
+
     public String imgId;
     public String imgUrl;
     public String fileOrgPath;//原图路径
@@ -105,5 +109,34 @@ public class ImageData implements Serializable {
         }
     }
 
-
+    public void displayImage(final Context context, final ImageView imageView, final CompressCallback callback) {
+        if (fileCompressPath != null) {
+            Glide.with(context).load(new File(fileCompressPath)).centerCrop().crossFade().into(imageView);
+        } else if (imgUrl != null) {
+            Glide.with(context).load(Uri.parse(imgUrl)).centerCrop().crossFade().into(imageView);
+        } else if (fileOrgPath != null) {
+            File imageFile = new File(fileOrgPath);
+            if (cwidth > 0 && cheight > 0) {
+                BitmapTypeRequest<File> request = Glide.with(context).load(imageFile).asBitmap();
+                SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>(cwidth, cheight) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        imageView.setImageBitmap(resource);
+                        fileCompressPath = FileUtil.getAppExtCachePathFile(FileUtil.genRandomPicName("compress"));
+                        FileUtil.writeBitmapToSD(fileCompressPath, resource, Bitmap.CompressFormat.JPEG);
+                        if (callback!=null) {
+                            callback.onCompressFinish();
+                        }
+                    }
+                };
+                if (scaleType==ScaleType.SCALE_TYPE_CENTER_CROP) {
+                    request.centerCrop().into(target);
+                }else {
+                    request.fitCenter().into(target);
+                }
+            } else {
+                Glide.with(context).load(imageFile).centerCrop().crossFade().into(imageView);
+            }
+        }
+    }
 }

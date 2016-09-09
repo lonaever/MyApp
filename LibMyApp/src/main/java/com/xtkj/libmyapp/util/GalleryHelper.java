@@ -70,6 +70,22 @@ public class GalleryHelper implements GalleryFinal.OnHanlderResultCallback {
         showDlg(context);
     }
 
+    public void openCamera(Context context,OnPickPhotoCallback callback) {
+        this.maxCount = 1;
+        this.isCrop = false;
+        this.pickPhotoCallback=callback;
+        takeCamera();
+    }
+
+    public void openCameraCrop(Context context, int width, int height,OnPickPhotoCallback callback) {
+        this.maxCount = 1;
+        this.isCrop = true;
+        this.cropWidth = width;
+        this.cropHeight = height;
+        this.pickPhotoCallback=callback;
+        takeCamera();
+    }
+
     public void openMuti(Context context, int maxCount,OnPickMutiPhotoCallback callback) {
         this.maxCount = maxCount;
         this.isCrop = false;
