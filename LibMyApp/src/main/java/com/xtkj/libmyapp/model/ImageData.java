@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.xtkj.libmyapp.util.FileUtil;
+import com.xtkj.libmyapp.util.ImageCompressCallback;
 import com.xtkj.libmyapp.util.UriUtil;
 
 import java.io.File;
@@ -29,10 +30,6 @@ public class ImageData implements Serializable {
     public enum ScaleType {
         SCALE_TYPE_FIT_CENTER,
         SCALE_TYPE_CENTER_CROP
-    }
-
-    public interface CompressCallback {
-        void onCompressFinish();
     }
 
     public String imgId;
@@ -109,7 +106,7 @@ public class ImageData implements Serializable {
         }
     }
 
-    public void displayImage(final Context context, final ImageView imageView, final CompressCallback callback) {
+    public void displayImage(final Context context, final ImageView imageView, final ImageCompressCallback callback) {
         if (fileCompressPath != null) {
             Glide.with(context).load(new File(fileCompressPath)).centerCrop().crossFade().into(imageView);
         } else if (imgUrl != null) {
