@@ -31,8 +31,8 @@ public class ImageData implements Serializable {
         SCALE_TYPE_CENTER_CROP
     }
 
-    interface CompressCallback {
-        public void onCompressFinish();
+    public interface CompressCallback {
+        void onCompressFinish();
     }
 
     public String imgId;
