@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- <item name="android:textColorPrimary">@color/white</item> 标准title的颜色-->
         <!-- 设置通用的背景色-->
         <item name="android:windowBackground">@color/colorWindowBg</item>
         <!-- 设置activity切换动画 -->
@@ -43,6 +44,19 @@
         <item name="android:activityOpenExitAnimation">@anim/push_out_left</item>
         <item name="android:activityCloseEnterAnimation">@anim/pull_in_left</item>
         <item name="android:activityCloseExitAnimation">@anim/push_out_right</item>
+    </style>
+
+    <!-- ToolBar 浅色菜单样式 -->
+    <style name="ToolbarLightTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@color/text_dark</item>
+        <item name="android:textSize">18sp</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- ToolBar 深色菜单样式 -->
+    <style name="ToolbarDarkTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="actionMenuTextColor">@color/text_dark</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <!-- actionbar fontstyle-->
