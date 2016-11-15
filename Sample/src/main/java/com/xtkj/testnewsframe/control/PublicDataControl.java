@@ -2,6 +2,8 @@ package com.xtkj.testnewsframe.control;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
 import com.alibaba.fastjson.JSON;
@@ -14,6 +16,8 @@ import com.xtkj.libmyapp.http.callback.GenericsCallback;
 import com.xtkj.libmyapp.http.callback.IGenericsSerializator;
 import com.xtkj.libmyapp.http.callback.JsonGenericsSerializator;
 import com.xtkj.libmyapp.http.ext2xtkj.XtkjGenericsCallback;
+import com.xtkj.libmyapp.util.LogUtils;
+import com.xtkj.libmyapp.util.ServerConfig;
 import com.xtkj.testnewsframe.BuildConfig;
 import com.xtkj.testnewsframe.model.NewsInfo;
 
@@ -29,6 +33,17 @@ public class PublicDataControl extends DataControl {
         super(context);
         this.initSet();
 
+        //测试从meta中读取
+        try {
+            ApplicationInfo appInfo = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(),
+                            PackageManager.GET_META_DATA);
+            String a=appInfo.metaData.getString("config_name");
+            LogUtils.d("a="+a);
+            LogUtils.d("read testmeta:"+ ServerConfig.getValue("testMeta"));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

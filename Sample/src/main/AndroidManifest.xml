@@ -50,6 +50,8 @@
             android:theme="@style/AppDrawer" />
         <activity android:name=".page.http.RecycleViewActivity" />
         <activity android:name=".page.recycleview.RecycleViewTestActivity"></activity>
+
+        <meta-data android:name="config_name" android:value="xxx.properties"/>
     </application>
 
 </manifest>
