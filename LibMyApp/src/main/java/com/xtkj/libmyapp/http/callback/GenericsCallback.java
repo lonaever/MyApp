@@ -19,7 +19,10 @@ public abstract class GenericsCallback<T> extends Callback<T> {
 
     @Override
     public T parseNetworkResponse(Response response, int id) throws IOException {
-        String string = validateData == null ? response.body().string() : validateData;
+        if (validateData == null) {
+            //表示没有数据
+            return null;
+        }
         Type superclass = getClass().getGenericSuperclass();
         if (superclass instanceof Class) {
             //表示未设置泛型T
@@ -28,9 +31,9 @@ public abstract class GenericsCallback<T> extends Callback<T> {
         ParameterizedType parameterized = (ParameterizedType) superclass;
         Type mType = parameterized.getActualTypeArguments()[0];
         if (mType == String.class) {
-            return (T) string;
+            return (T) validateData;
         } else {
-            T bean = mGenericsSerializator.transform(string, mType);
+            T bean = mGenericsSerializator.transform(validateData, mType);
             return bean;
         }
     }
