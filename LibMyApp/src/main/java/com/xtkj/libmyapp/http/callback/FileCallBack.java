@@ -1,5 +1,7 @@
 package com.xtkj.libmyapp.http.callback;
 
+import android.os.SystemClock;
+
 import com.xtkj.libmyapp.http.OkHttpUtils;
 
 import java.io.File;
@@ -22,6 +24,9 @@ public abstract class FileCallBack extends Callback<File>
      * 目标文件存储的文件名
      */
     private String destFileName;
+
+    private static final int DEFAULT_RATE = 1000;
+    private long lastUpdateTime;
 
 
     public FileCallBack(String destFileDir, String destFileName)
@@ -68,8 +73,9 @@ public abstract class FileCallBack extends Callback<File>
                     @Override
                     public void run()
                     {
-
-                        inProgress(finalSum * 1.0f / total,total,id);
+                        if (updateProgress()) {
+                            inProgress(finalSum * 1.0f / total,total,id);
+                        }
                     }
                 });
             }
@@ -94,6 +100,15 @@ public abstract class FileCallBack extends Callback<File>
             }
 
         }
+    }
+
+    private boolean updateProgress() {
+        long currTime = SystemClock.uptimeMillis();
+        if(currTime - this.lastUpdateTime >= DEFAULT_RATE) {
+            this.lastUpdateTime = currTime;
+            return true;
+        }
+        return false;
     }
 
 
