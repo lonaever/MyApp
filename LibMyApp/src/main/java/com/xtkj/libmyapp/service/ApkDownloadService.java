@@ -38,6 +38,9 @@ public abstract class ApkDownloadService extends Service {
     //需要实现的方法
     public abstract int iconResId();
     public abstract String titleText();
+    public String tickerText() {
+        return "开始更新";
+    }
 
 
     @Override
@@ -50,7 +53,7 @@ public abstract class ApkDownloadService extends Service {
 
         this.updateNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         this.updateBuilder = new NotificationCompat.Builder(this);
-        updateBuilder.setContentTitle(titleText()).setSmallIcon(iconResId());
+        updateBuilder.setContentTitle(titleText()).setSmallIcon(iconResId()).setTicker(tickerText());
 
         // 发出通知
         updateProgress(0);
